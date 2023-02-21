@@ -13,11 +13,10 @@ import (
 func HandleRequest() {
 	r := mux.NewRouter()
 	r.Use(middleware.ContentTypeMiddleware)
-	r.HandleFunc("/", controllers.Home)
-	r.HandleFunc("/api/personalidades", controllers.AllPersonalidades).Methods("Get")
-	r.HandleFunc("/api/personalidades/{id}", controllers.GetOnePersonalidade).Methods("Get")
-	r.HandleFunc("/api/personalidades", controllers.CreateNewPersonalidade).Methods("Post")
-	r.HandleFunc("/api/personalidades/{id}", controllers.DeleteOnePersonalidade).Methods("Delete")
-	r.HandleFunc("/api/personalidades/{id}", controllers.UpdateOnePersonalidade).Methods("Put")
+	r.HandleFunc("/api/personalities", controllers.GetAllPersonalities).Methods("Get")
+	r.HandleFunc("/api/personalities/{id}", controllers.GetOnePersonalitie).Methods("Get")
+	r.HandleFunc("/api/personalities", controllers.CreateNewPersonalitie).Methods("Post")
+	r.HandleFunc("/api/personalities/{id}", controllers.DeleteOnePersonalitie).Methods("Delete")
+	r.HandleFunc("/api/personalities/{id}", controllers.UpdateOnePersonalitie).Methods("Put")
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(handlers.AllowedOrigins([]string{"*"}))(r)))
 }
